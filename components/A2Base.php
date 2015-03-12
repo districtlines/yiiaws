@@ -106,7 +106,7 @@ abstract class A2Base extends CComponent
 
 		} catch(Exception $e) {
 			// do nothing
-			throw new CException(Yii::t('zii', $e->getMessage()));//custom added
+			//throw new CException(Yii::t('zii', $e->getMessage()));//custom added
 		}
 		return parent::__call($method, $args);
 	}
