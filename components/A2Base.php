@@ -41,46 +41,46 @@ abstract class A2Base extends CComponent
 	const AWS_SWF 					= 'swf';
 
 
-    /**
-     * @var Aws holds the pointer to aws instance
-     */
-    protected $_aws;
-    /**
-     * @var AS2Base client
-     */
-    protected $_client;
-    /**
-     * @var array holds custom configuration
-     */
-    protected $_config;
+	/**
+	 * @var Aws holds the pointer to aws instance
+	 */
+	protected $_aws;
+	/**
+	 * @var AS2Base client
+	 */
+	protected $_client;
+	/**
+	 * @var array holds custom configuration
+	 */
+	protected $_config;
 
-    /**
-     * Added option to use dynamic configurations instead of a file
-     * @param array $config
-     */
-    public function __construct($config = array())
-    {
-        if (!empty($config))
-            $this->_config = $config;
-    }
+	/**
+	 * Added option to use dynamic configurations instead of a file
+	 * @param array $config
+	 */
+	public function __construct($config = array())
+	{
+		if (!empty($config))
+			$this->_config = $config;
+	}
 
-    /**
-     * Returns the aws service builder
-     * @return Guzzle\Service\Builder\ServiceBuilder
-     * @throws CException
-     */
-    public function getAws()
-    {
-        if (null === $this->_aws) {
-            $config = $this->_config !== null ? $this->_config : __DIR__ . '/../config/aws-config.php';
-            if (is_scalar($config) && !@file_exists($config))
-                throw new CException(Yii::t('zii', '"aws-config.php" configuration file not found'));
+	/**
+	 * Returns the aws service builder
+	 * @return Guzzle\Service\Builder\ServiceBuilder
+	 * @throws CException
+	 */
+	public function getAws()
+	{
+		if (null === $this->_aws) {
+			$config = $this->_config !== null ? $this->_config : Yii::getPathOfAlias('application.config') . '/awsConfig.php';
+			
+			if (is_scalar($config) && !@file_exists($config))
+				throw new CException(Yii::t('zii', '"aws-config.php" configuration file not found'));
+			$this->_aws = Aws::factory($config);
+		}
 
-            $this->_aws = Aws::factory($config);
-        }
-
-        return $this->_aws;
-    }
+		return $this->_aws;
+	}
 
 	/**
 	 * Magic call to wrapped amazon aws methods. If not command found, then call parent component

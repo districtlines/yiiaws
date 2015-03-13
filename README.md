@@ -2,6 +2,9 @@
 
 Provides a simple way to configure and use **Amazon AWS SDK PHP 2**. For more information regarding its services, please go to [http://docs.aws.amazon.com/aws-sdk-php-2/latest/namespace-Aws.html](http://docs.aws.amazon.com/aws-sdk-php-2/latest/namespace-Aws.html "").
 
+### Config file location
+The config file is located in the the protected/config directory in a file named `awsConfig.php`
+
 ### Before you start
 The wrapper is in **alpha** version. Obviously, I couldn't test all the possibilities of Amazon SDK, I have tested just a couple. But being just a wrapper, it should not have any issues whatsoever but those related to the SDK itself. 
 
