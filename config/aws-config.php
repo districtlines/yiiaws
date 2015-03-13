@@ -13,8 +13,8 @@ return array(
 	'services' => array(
 		'default_settings' => array(
 			'params' => array(
-				'key'    => 'AKIAIJDWQ5AY2OFPPLTQ',
-				'secret' => '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',
+				'key'    => Yii::app()->params['awsKey'],
+				'secret' => Yii::app()->params['awsSecret'],
 				'region' => 'us-east-1',
 				/**
 				 * Use this options if u get this kind of error
